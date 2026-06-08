@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Carbon Calculator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -20,19 +23,32 @@
         <label>Vehicle Type</label>
 
         <select name="vehicle">
+
             <option>Bike</option>
+
             <option>Car</option>
+
             <option>Bus</option>
+
             <option>Train</option>
+
         </select>
 
         <label>Daily Distance (km)</label>
 
-        <input type="number" name="distance" required>
+        <input
+            type="number"
+            name="distance"
+            required
+        >
 
         <label>Electricity Usage (units/month)</label>
 
-        <input type="number" name="electricity" required>
+        <input
+            type="number"
+            name="electricity"
+            required
+        >
 
         <button type="submit">
             Calculate Carbon Score
@@ -40,19 +56,34 @@
 
     </form>
 
+
+    {% if score %}
+
+    <div class="result-box">
+
+        <h2>
+            Your Carbon Score:
+            {{ score|round(2) }}
+        </h2>
+
+        <h3>
+            Eco Level:
+            {{ level }}
+        </h3>
+
+        <div class="tree">
+            {{ tree }}
+        </div>
+
+        <p>
+            Your Virtual Eco Tree
+        </p>
+
+    </div>
+
+    {% endif %}
+
 </div>
 
 </body>
 </html>
-
-{% if score %}
-
-<div class="result-box">
-
-    <h2>Your Carbon Score: {{ score|round(2) }}</h2>
-
-    <h3>Eco Level: {{ level }}</h3>
-
-</div>
-
-{% endif %}

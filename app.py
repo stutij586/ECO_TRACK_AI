@@ -6,11 +6,13 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
+
 @app.route('/calculator', methods=['GET', 'POST'])
 def calculator():
 
     score = None
     level = None
+    tree = None
 
     if request.method == 'POST':
 
@@ -19,7 +21,7 @@ def calculator():
         electricity = float(request.form['electricity'])
 
         vehicle_factor = {
-            "Bike": 0.1,
+            "Bike": 0.10,
             "Car": 0.25,
             "Bus": 0.05,
             "Train": 0.03
@@ -27,23 +29,32 @@ def calculator():
 
         score = (
             distance * vehicle_factor[vehicle]
-            + electricity * 0.2
+            + electricity * 0.20
         )
 
         if score < 50:
             level = "Green 🌱"
+            tree = "🌱"
 
         elif score < 100:
             level = "Moderate 🌿"
+            tree = "🌿"
+
+        elif score < 200:
+            level = "High 🌳"
+            tree = "🌳"
 
         else:
-            level = "High 🔥"
+            level = "Critical 🔥"
+            tree = "🔥"
 
     return render_template(
         "calculator.html",
         score=score,
-        level=level
+        level=level,
+        tree=tree
     )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
