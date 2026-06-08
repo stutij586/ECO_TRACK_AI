@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carbon Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+    <h2>🌍 EcoTrack AI</h2>
+</nav>
+
+<div class="calculator-container">
+
+    <h1>Carbon Footprint Calculator</h1>
+
+    <form method="POST">
+
+        <label>Vehicle Type</label>
+
+        <select name="vehicle">
+            <option>Bike</option>
+            <option>Car</option>
+            <option>Bus</option>
+            <option>Train</option>
+        </select>
+
+        <label>Daily Distance (km)</label>
+
+        <input type="number" name="distance" required>
+
+        <label>Electricity Usage (units/month)</label>
+
+        <input type="number" name="electricity" required>
+
+        <button type="submit">
+            Calculate Carbon Score
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+
+{% if score %}
+
+<div class="result-box">
+
+    <h2>Your Carbon Score: {{ score|round(2) }}</h2>
+
+    <h3>Eco Level: {{ level }}</h3>
+
+</div>
+
+{% endif %}
