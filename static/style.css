@@ -229,3 +229,33 @@ label{
     margin:20px 0;
     text-shadow:0 0 20px rgba(34,197,94,0.5);
 }
+
+.simulator-box{
+
+    margin-top:30px;
+
+    background:rgba(255,255,255,0.05);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+}
+
+.simulator-box h2{
+
+    margin-bottom:20px;
+}
+
+.simulator-box label{
+
+    display:block;
+
+    margin-bottom:15px;
+}
+
+.simulator-box input{
+
+    width:100%;
+}

@@ -14,6 +14,10 @@ def calculator():
     level = None
     tree = None
 
+    vehicle = "Bike"
+    distance = ""
+    electricity = ""
+
     if request.method == 'POST':
 
         vehicle = request.form['vehicle']
@@ -32,27 +36,32 @@ def calculator():
             + electricity * 0.20
         )
 
-        if score < 50:
-            level = "Green 🌱"
-            tree = "🌱"
+        # Better sustainability logic
 
-        elif score < 100:
-            level = "Moderate 🌿"
-            tree = "🌿"
+        if score < 30:
+            level = "Eco Champion 🌲"
+            tree = "🌲"
 
-        elif score < 200:
-            level = "High 🌳"
+        elif score < 70:
+            level = "Great 🌳"
             tree = "🌳"
 
+        elif score < 120:
+            level = "Average 🌿"
+            tree = "🌿"
+
         else:
-            level = "Critical 🔥"
-            tree = "🔥"
+            level = "Needs Improvement 🌱"
+            tree = "🌱"
 
     return render_template(
         "calculator.html",
         score=score,
         level=level,
-        tree=tree
+        tree=tree,
+        vehicle=vehicle,
+        distance=distance,
+        electricity=electricity
     )
 
 

@@ -24,13 +24,25 @@
 
         <select name="vehicle">
 
-            <option>Bike</option>
+            <option value="Bike"
+            {% if vehicle=="Bike" %}selected{% endif %}>
+            Bike
+            </option>
 
-            <option>Car</option>
+            <option value="Car"
+            {% if vehicle=="Car" %}selected{% endif %}>
+            Car
+            </option>
 
-            <option>Bus</option>
+            <option value="Bus"
+            {% if vehicle=="Bus" %}selected{% endif %}>
+            Bus
+            </option>
 
-            <option>Train</option>
+            <option value="Train"
+            {% if vehicle=="Train" %}selected{% endif %}>
+            Train
+            </option>
 
         </select>
 
@@ -39,6 +51,7 @@
         <input
             type="number"
             name="distance"
+            value="{{ distance }}"
             required
         >
 
@@ -47,6 +60,7 @@
         <input
             type="number"
             name="electricity"
+            value="{{ electricity }}"
             required
         >
 
@@ -56,8 +70,7 @@
 
     </form>
 
-
-    {% if score %}
+    {% if score is not none %}
 
     <div class="result-box">
 
@@ -81,9 +94,65 @@
 
     </div>
 
+    <div class="simulator-box">
+
+        <h2>🎯 Carbon Reduction Simulator</h2>
+
+        <label>
+            Reduce Daily Travel Distance (km)
+        </label>
+
+        <input
+            type="range"
+            min="0"
+            max="50"
+            value="0"
+            id="distanceSlider"
+        >
+
+        <h3>
+            Reduced Distance:
+            <span id="distanceValue">0</span> km
+        </h3>
+
+        <h3>
+            Estimated Carbon Saved:
+            <span id="savedCarbon">0</span>
+        </h3>
+
+    </div>
+
     {% endif %}
 
 </div>
+
+<script>
+
+const slider = document.getElementById("distanceSlider");
+
+if(slider){
+
+    slider.addEventListener("input", function(){
+
+        let reducedDistance = parseInt(this.value);
+
+        document.getElementById(
+            "distanceValue"
+        ).innerText = reducedDistance;
+
+        let carbonSaved =
+        reducedDistance * 0.25;
+
+        document.getElementById(
+            "savedCarbon"
+        ).innerText =
+        carbonSaved.toFixed(2);
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
