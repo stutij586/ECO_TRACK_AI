@@ -17,6 +17,7 @@ def calculator():
     average_score = 75
     battle_message = ""
     progress_width = 10
+    battle_color="#22c55e"
 
     vehicle = "Bike"
     distance = ""
@@ -59,14 +60,36 @@ def calculator():
             tree = "🌱"
 
 
-        average_score = 75
+        student_scores = [
+            45,
+            60,
+            80,
+            95,
+            55,
+            70,
+            65
+        ]
+
+        average_score = round(
+            sum(student_scores)
+            / len(student_scores),
+            1
+        )
 
         if score < average_score:
             battle_message = "🎉 Great Job! You are greener than average students."
+            battle_color = "#22c55e"
+
         else:
             battle_message = "⚠️ Your carbon footprint is higher than average students."
-        progress_width = max(10, 100 - score)
-
+            battle_color = "#ef4444"
+        progress_width = max(
+            5,
+            min(
+                100,
+                (average_score / score) * 100
+            )
+        )
     return render_template(
     "calculator.html",
     score=score,
@@ -77,10 +100,35 @@ def calculator():
     electricity=electricity,
     average_score=average_score,
     battle_message=battle_message,
-    progress_width=progress_width
+    progress_width=progress_width,
+    battle_color=battle_color
 )
 
+@app.route('/eco-coach')
+def eco_coach():
 
+    tips = [
+
+        "Use public transport whenever possible.",
+
+        "Switch off unused lights and appliances.",
+
+        "Carry a reusable water bottle.",
+
+        "Plant more trees around your locality.",
+
+        "Reduce plastic consumption.",
+
+        "Prefer cycling or walking for short trips.",
+
+        "Use LED bulbs to save electricity."
+
+    ]
+
+    return render_template(
+        "eco_coach.html",
+        tips=tips
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)

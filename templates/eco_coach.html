@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Eco Coach</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>🌍 EcoTrack AI</h2>
+
+</nav>
+
+<div class="calculator-container">
+
+    <h1>🤖 AI Eco Coach</h1>
+
+    {% for tip in tips %}
+
+    <div class="card"
+         style="margin-bottom:20px;">
+
+        <h2>💡 Eco Tip</h2>
+
+        <p>{{ tip }}</p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
