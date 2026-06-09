@@ -13,6 +13,7 @@ def calculator():
     score = None
     level = None
     tree = None
+    badge = None
 
     average_score = 75
     battle_message = ""
@@ -59,6 +60,20 @@ def calculator():
             level = "Needs Improvement 🌱"
             tree = "🌱"
 
+        # Sustainability Badge
+
+        if score < 30:
+            badge = "🏅 Gold Eco Champion"
+
+        elif score < 70:
+            badge = "🥈 Silver Green Warrior"
+
+        elif score < 120:
+            badge = "🥉 Bronze Eco Learner"
+
+        else:
+            badge = "🌱 Beginner Badge"
+
 
         student_scores = [
             45,
@@ -95,6 +110,7 @@ def calculator():
     score=score,
     level=level,
     tree=tree,
+    badge=badge,
     vehicle=vehicle,
     distance=distance,
     electricity=electricity,
