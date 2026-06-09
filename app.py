@@ -14,6 +14,10 @@ def calculator():
     level = None
     tree = None
 
+    average_score = 75
+    battle_message = ""
+    progress_width = 10
+
     vehicle = "Bike"
     distance = ""
     electricity = ""
@@ -54,15 +58,28 @@ def calculator():
             level = "Needs Improvement 🌱"
             tree = "🌱"
 
+
+        average_score = 75
+
+        if score < average_score:
+            battle_message = "🎉 Great Job! You are greener than average students."
+        else:
+            battle_message = "⚠️ Your carbon footprint is higher than average students."
+        progress_width = max(10, 100 - score)
+
     return render_template(
-        "calculator.html",
-        score=score,
-        level=level,
-        tree=tree,
-        vehicle=vehicle,
-        distance=distance,
-        electricity=electricity
-    )
+    "calculator.html",
+    score=score,
+    level=level,
+    tree=tree,
+    vehicle=vehicle,
+    distance=distance,
+    electricity=electricity,
+    average_score=average_score,
+    battle_message=battle_message,
+    progress_width=progress_width
+)
+
 
 
 if __name__ == '__main__':

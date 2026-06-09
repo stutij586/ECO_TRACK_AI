@@ -94,6 +94,35 @@
 
     </div>
 
+    <div class="battle-box">
+
+    <h2>🏆 Eco Battle Dashboard</h2>
+
+    <h3>
+        Your Score:
+        {{ score|round(2) }}
+    </h3>
+
+    <h3>
+        Average Student Score:
+        {{ average_score }}
+    </h3>
+
+    <p>
+        {{ battle_message }}
+    </p>
+
+    <div class="progress-container">
+
+        <div
+            class="progress-bar"
+            style="width: {{ progress_width }}%;">
+        </div>
+
+    </div>
+
+</div>
+
     <div class="simulator-box">
 
         <h2>🎯 Carbon Reduction Simulator</h2>
