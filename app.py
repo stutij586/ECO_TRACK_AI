@@ -107,27 +107,74 @@ def calculator():
 @app.route('/eco-coach')
 def eco_coach():
 
-    tips = [
+    score = request.args.get(
+        "score",
+        default=50,
+        type=float
+    )
 
-        "Use public transport whenever possible.",
+    if score < 30:
 
-        "Switch off unused lights and appliances.",
+        tips = [
 
-        "Carry a reusable water bottle.",
+            "🌟 Excellent work! Maintain your eco-friendly lifestyle.",
 
-        "Plant more trees around your locality.",
+            "🚲 Continue using sustainable transport.",
 
-        "Reduce plastic consumption.",
+            "🌳 Encourage friends to reduce their footprint.",
 
-        "Prefer cycling or walking for short trips.",
+            "♻️ Keep recycling and reducing waste."
 
-        "Use LED bulbs to save electricity."
+        ]
 
-    ]
+    elif score < 70:
+
+        tips = [
+
+            "🚶 Walk for short distances whenever possible.",
+
+            "💡 Switch to LED lighting.",
+
+            "🚰 Reduce water wastage.",
+
+            "♻️ Increase recycling habits."
+
+        ]
+
+    elif score < 120:
+
+        tips = [
+
+            "⚠️ Your footprint is moderate.",
+
+            "🚌 Use public transport more often.",
+
+            "🔌 Reduce unnecessary electricity usage.",
+
+            "🌱 Try carpooling or cycling."
+
+        ]
+
+    else:
+
+        tips = [
+
+            "🚨 High carbon footprint detected.",
+
+            "🚗 Reduce personal vehicle usage.",
+
+            "⚡ Cut electricity consumption significantly.",
+
+            "🌳 Plant trees and offset emissions.",
+
+            "♻️ Adopt sustainable daily habits."
+
+        ]
 
     return render_template(
         "eco_coach.html",
-        tips=tips
+        tips=tips,
+        score=score
     )
 
 if __name__ == '__main__':
