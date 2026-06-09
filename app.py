@@ -15,6 +15,9 @@ def calculator():
     tree = None
     badge = None
 
+    monthly_co2=0
+    cleaner_percent=0
+
     average_score = 75
     battle_message = ""
     progress_width = 10
@@ -74,6 +77,18 @@ def calculator():
         else:
             badge = "🌱 Beginner Badge"
 
+        # Sustainability Impact Summary
+
+        monthly_co2 = round(score, 1)
+
+        cleaner_percent = round(
+            max(
+                0,
+                ((average_score - score) / average_score) * 100
+            ),
+            1
+        )
+
 
         student_scores = [
             45,
@@ -117,7 +132,9 @@ def calculator():
     average_score=average_score,
     battle_message=battle_message,
     progress_width=progress_width,
-    battle_color=battle_color
+    battle_color=battle_color,
+    monthly_co2=monthly_co2,
+    cleaner_percent=cleaner_percent
 )
 
 @app.route('/eco-coach')
